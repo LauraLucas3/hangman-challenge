@@ -10,7 +10,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: url("../img/bg-image-universe.jpg");
+  background-image: url("../img/bg-img-universe.jpg");
   background-repeat: no-repeat;
   background-size: auto 150%;
   background-position: relative bottom right;
