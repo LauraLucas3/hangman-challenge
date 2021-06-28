@@ -10,7 +10,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: url("https://pixabay.com/get/g462b2d197ee3ab6fc9b05c57a74efd253e9f491b800356467c0835461c2ece2bee42c8dcf870dd2e47551ace932aece3_1920.jpg");
+  background-image: url("../img/bg-img-universe.jpg");
   background-repeat: no-repeat;
   background-size: auto 150%;
   background-position: relative bottom right;
@@ -54,6 +54,7 @@ h1 {
 
 h2 {
   font-size: 40px;
+  display: inline-block;
 }
 
 @media only screen and (max-width: 576px) {
