@@ -14,6 +14,7 @@ body {
   background-repeat: no-repeat;
   background-size: auto 150%;
   background-position: relative bottom right;
+  background-color: black;
   color: white;
 }
 
@@ -48,6 +49,10 @@ h1 {
 #RightLetters, #WrongLetters {
   margin-top: 15px;
   margin-bottom: 15px;
+  font-size: 40px;
+}
+
+h2 {
   font-size: 40px;
 }
 
