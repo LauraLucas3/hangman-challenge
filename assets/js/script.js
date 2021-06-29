@@ -72,6 +72,17 @@ document.getElementById("run").addEventListener("click", () => {
 
         if ((RightLetters.includes(TargLetter) == true) || (WrongLetters.includes(TargLetter) == true)) {
         document.getElementById("Advices").innerHTML = "You have already checked this letter";
+            if (TargLetter == letter) {
+                spanelem.style.color = "white";
+            }
+            else {
+                if (RightLetters.includes(letter) == true) {
+                    spanelem.style.color = "white";
+                }
+                else {
+                    spanelem.style.color = "rgba(0, 0, 0, 0)";
+                }
+            }
         }
 
         //Et on fait apparaitre la lettre ou non si elle est correcte ou fausse, en changeant sa couleur
