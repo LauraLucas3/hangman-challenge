@@ -12,41 +12,44 @@
 
     </head>
     <body>
-        <section class="container">
+        <!--contenu de la page-->
+        <main class="content">
+
             <!--titre-->
             <header>
                 <h1> Hangman Game</h1>
             </header>
+            
+            <!--Texte à mettre, comme par exemple dire que la lettre est bonne ou fausse-->
+            <div class="advices" id="Advices">
+            </div>
 
-            <!--contenu de la page-->
-            <main class="content">
+            <!--Mot à deviner-->
+            <div class="guess" id="guessWord">
+            </div>
 
-                <!--Texte à mettre, comme par exemple dire que la lettre est bonne ou fausse-->
-                <div class="advices" id="Advices">
-                </div>
+            <!--Input pour entrer la lettre à essayer dans le mot-->
+            <div class="LetterInput">
+                <form action="#" method="post" onSubmit="return false;">
+                    <div class="field" id="field">
+                        <label for="TargetLetter">Enter a letter :</label>
+                        <input type="text" name="TargetLetter" maxlength="1" id="TargetLetter" />
+                        <button type="button" id="run">Check the letter</button>
+                    </div>
+                </form>
+            </div>
 
-                <!--Mot à deviner-->
-                <div class="guess" id="guessWord">
-                </div>
+            <!--Lettre bonnes et fausses déjà vérifiées-->
+            <div class="checkedLetters">
+                <article><h2>Lives :</h2><span id="livesCount"></span></article>
+                <article id="RightLetters"><h2>Right letters :</h2><span id="RightLetters2"></span></article>
+                <article id="WrongLetters"><h2>Wrong letters :</h2><span id="WrongLetters2"></span></article>
+            </div>
 
-                <!--Input pour entrer la lettre à essayer dans le mot-->
-                <div class="LetterInput">
-                    <form action="#" method="post">
-                        <div class="field" id="field">
-                            <label for="TargetLetter">Enter a letter :</label>
-                            <input type="text" name="TargetLetter" maxlength="1" id="TargetLetter" />
-                            <button type="button" id="run">Check the letter</button>
-                        </div>
-                    </form>
-                </div>
-
-                <!--Lettre bonnes et fausses déjà vérifiées-->
-                <div class="checkedLetters">
-                    <article id="RightLetters"><h2>Right letters :</h2><span id="RightLetters2"></span></article>
-                    <article id="WrongLetters"><h2>Wrong letters :</h2><span id="WrongLetters2"></span></article>
-                </div>
-            </main>
-        </section>
+            <div>
+                <button type="button" id="newGame">New Game</button>
+            </div>
+        </main>
 
         <script src="assets/js/bundle.js"></script>
     </body>
