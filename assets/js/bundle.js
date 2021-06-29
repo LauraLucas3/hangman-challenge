@@ -9,6 +9,10 @@ var DivRandomWord = randomWord.split(""); //on sépare chaque lettre du mot gén
 var uniqueGuess = [...new Set(DivRandomWord)]; //on crée un set pour n'avoir qu'une fois les différentes lettres du mot
 var RightLetters = []; //arrays pour les lettres correctes et fausses à venir
 var WrongLetters = [];
+var uniqueRight = [...new Set(RightLetters)];
+uniqueRight2 = Array.from(uniqueRight);
+var uniqueWrong = [...new Set(WrongLetters)];
+uniqueWrong2 = Array.from(uniqueWrong);
 
 //set up de base du mot invisible
 function writeWord() {
@@ -25,6 +29,8 @@ function writeWord() {
 
 writeWord(); //on appelle la fonction pour faire apparaitre le mot à chercher sur la page
 
+document.getElementById("livesCount").innerHTML= " " + (6-uniqueWrong2.length) + "/6";//on donne le nombre de vies restantes
+
 //fonction de l'event pour commencer une nouvelle partie
 document.getElementById("newGame").addEventListener("click", () => {
     randomWord= randomWords();
@@ -34,8 +40,14 @@ document.getElementById("newGame").addEventListener("click", () => {
     document.getElementById("WrongLetters2").innerHTML = "";
     RightLetters = [];
     WrongLetters = [];
+    uniqueRight = [...new Set(RightLetters)];
+    uniqueRight2 = Array.from(uniqueRight);
+    uniqueWrong = [...new Set(WrongLetters)];
+    uniqueWrong2 = Array.from(uniqueWrong);
     GuessCont.innerHTML= "";
     document.getElementById("Advices").innerHTML = "";
+    document.getElementById("TargetLetter").disabled = false;
+    document.getElementById("livesCount").innerHTML= " " + (6-uniqueWrong2.length) + "/6";
     writeWord();
 });
 
@@ -91,13 +103,11 @@ document.getElementById("run").addEventListener("click", () => {
 
     //Si les deux arrays correspondent, c'est gagné !
     if (uniqueGuess.every(i => RightLetters.includes(i)) == true) {
-        alert("Congratulions ! You guessed the word !");
         document.getElementById("Advices").innerHTML = "Congratulations ! You guessed the word !";
     }
 
     //Si on a fait trop d'erreurs, c'est perdu...
     if (WrongLetters.length == 6) {
-        alert("Sorry, you loose the game this time !");
         document.getElementById("Advices").innerHTML = "Sorry, you loose the game this time !";
         document.getElementById("TargetLetter").disabled = true;
         document.getElementById("newGame").innerHTML = "Try Again";
@@ -106,9 +116,9 @@ document.getElementById("run").addEventListener("click", () => {
     //On clear le contenu de l'affichage pour le remettre ensuite avec les ajouts
     document.getElementById("RightLetters2").innerHTML = "";
     document.getElementById("WrongLetters2").innerHTML = "";
-    var uniqueRight = [...new Set(RightLetters)];
+    uniqueRight = [...new Set(RightLetters)];
     uniqueRight2 = Array.from(uniqueRight);
-    var uniqueWrong = [...new Set(WrongLetters)];
+    uniqueWrong = [...new Set(WrongLetters)];
     uniqueWrong2 = Array.from(uniqueWrong);
     uniqueRight2.forEach(letters => {
         var spanelem2 = document.createElement("span");
@@ -121,6 +131,8 @@ document.getElementById("run").addEventListener("click", () => {
         spanelem2.innerHTML = " " + letters;
         document.getElementById("WrongLetters2").appendChild(spanelem2);
     })
+
+    document.getElementById("livesCount").innerHTML= " " + (6-uniqueWrong2.length) + "/6";
     
     document.getElementById("TargetLetter").value="";
 
