@@ -47,6 +47,7 @@ document.getElementById("newGame").addEventListener("click", () => {
     document.getElementById("Advices").innerHTML = "";
     document.getElementById("TargetLetter").disabled = false;
     document.getElementById("livesCount").innerHTML= " " + (6-uniqueWrong2.length) + "/6";
+    document.getElementById("newGame").innerHTML = "New Game";
     writeWord();
 });
 
