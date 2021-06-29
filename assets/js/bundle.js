@@ -7,21 +7,37 @@ var GuessCont = document.getElementById("guessWord"); //une variable pour le con
 var randomWord= randomWords(); //on établit la variable du mot généré aléatoirement
 var DivRandomWord = randomWord.split(""); //on sépare chaque lettre du mot généré
 var uniqueGuess = [...new Set(DivRandomWord)]; //on crée un set pour n'avoir qu'une fois les différentes lettres du mot
+var RightLetters = []; //arrays pour les lettres correctes et fausses à venir
+var WrongLetters = [];
 
 //set up de base du mot invisible
-DivRandomWord.forEach(letter => {
-    var spanelem = document.createElement("span");
-    spanelem.innerHTML = letter;
-    spanelem.style.borderBottomColor = "white";
-    spanelem.style.borderBottomWidth = "5px";
-    spanelem.style.borderBottomStyle = "solid";
-    spanelem.setAttribute("class", "HMLetter");
-    GuessCont.appendChild(spanelem);
-})
+function writeWord() {
+    DivRandomWord.forEach(letter => {
+        var spanelem = document.createElement("span");
+        spanelem.innerHTML = letter;
+        spanelem.style.borderBottomColor = "white";
+        spanelem.style.borderBottomWidth = "5px";
+        spanelem.style.borderBottomStyle = "solid";
+        spanelem.setAttribute("class", "HMLetter");
+        GuessCont.appendChild(spanelem);
+    })
+}
 
-//arrays pour les lettres correctes et fausses à venir
-var RightLetters = [];
-var WrongLetters = [];
+writeWord(); //on appelle la fonction pour faire apparaitre le mot à chercher sur la page
+
+//fonction de l'event pour commencer une nouvelle partie
+document.getElementById("newGame").addEventListener("click", () => {
+    randomWord= randomWords();
+    DivRandomWord = randomWord.split("");
+    uniqueGuess = [...new Set(DivRandomWord)];
+    document.getElementById("RightLetters2").innerHTML = "";
+    document.getElementById("WrongLetters2").innerHTML = "";
+    RightLetters = [];
+    WrongLetters = [];
+    GuessCont.innerHTML= "";
+    document.getElementById("Advices").innerHTML = "";
+    writeWord();
+});
 
 //actions quand on clique sur le bouton
 document.getElementById("run").addEventListener("click", () => {
@@ -29,10 +45,9 @@ document.getElementById("run").addEventListener("click", () => {
     GuessCont.innerHTML= ""; //on commence par clear le conteneur
     document.getElementById("Advices").innerHTML = ""; //on clear le message de l'advice, s'il y en a un
     
-    var TargLetter = document.getElementById("TargetLetter").value; //on prend la valeur entrée dans l'input
+    var TargLetter = (document.getElementById("TargetLetter").value).toLowerCase(); //on prend la valeur entrée dans l'input
 
     //on réécrit chaque lettre du mot ...
-
     DivRandomWord.forEach(letter => {
         var spanelem = document.createElement("span");
         spanelem.innerHTML = letter;
@@ -67,7 +82,6 @@ document.getElementById("run").addEventListener("click", () => {
     })
 
     //on check ensuite si la lettre est bien dans le mot pour la mettre dans l'array approprié
-
     if (DivRandomWord.includes(TargLetter) == true) {
         RightLetters.push(TargLetter);
     }
@@ -76,23 +90,20 @@ document.getElementById("run").addEventListener("click", () => {
     }
 
     //Si les deux arrays correspondent, c'est gagné !
-
     if (uniqueGuess.every(i => RightLetters.includes(i)) == true) {
         alert("Congratulions ! You guessed the word !");
         document.getElementById("Advices").innerHTML = "Congratulations ! You guessed the word !";
     }
 
     //Si on a fait trop d'erreurs, c'est perdu...
-
     if (WrongLetters.length == 6) {
         alert("Sorry, you loose the game this time !");
         document.getElementById("Advices").innerHTML = "Sorry, you loose the game this time !";
         document.getElementById("TargetLetter").disabled = true;
+        document.getElementById("newGame").innerHTML = "Try Again";
     }
 
     //On clear le contenu de l'affichage pour le remettre ensuite avec les ajouts
-
-
     document.getElementById("RightLetters2").innerHTML = "";
     document.getElementById("WrongLetters2").innerHTML = "";
     var uniqueRight = [...new Set(RightLetters)];
@@ -115,6 +126,18 @@ document.getElementById("run").addEventListener("click", () => {
 
     
 })
+
+//faire en sorte qu'appuyer sur enter fasse le même event qu'appuyer sur le bouton
+var input = document.getElementById("TargetLetter");
+input.addEventListener("keyup", function(event) {
+    let key = event.key;
+    if (key && "Enter" === key) {
+        event.preventDefault();
+        document.getElementById("run").click();
+    }
+});
+
+
 },{"random-words":2}],2:[function(require,module,exports){
 var wordList = [
   // Borrowed from xkcd password generator which borrowed it from wherever
