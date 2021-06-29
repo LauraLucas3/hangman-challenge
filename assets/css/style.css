@@ -1,9 +1,15 @@
+html {
+  min-height: 100%;
+  margin: 0;
+}
+
 body {
   text-align: center;
   font-family: 'VT323', monospace;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  min-height: 100%;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -12,16 +18,24 @@ body {
           justify-content: center;
   background-image: url("../img/bg-img-universe.jpg");
   background-repeat: no-repeat;
-  background-size: auto 150%;
-  background-position: relative bottom right;
+  background-size: cover;
+  background-position: relative top right;
   background-color: black;
   color: white;
 }
 
 h1 {
   font-size: 120px;
+  margin-top: 25px;
+  margin-bottom: 10px;
 }
 
+/*Advices*/
+.advices {
+  font-size: 30px;
+}
+
+/*Word to guess*/
 #guessWord {
   font-size: 80px;
   margin-top: 80px;
@@ -33,10 +47,7 @@ h1 {
   color: rgba(0, 0, 0, 0);
 }
 
-.advices {
-  font-size: 30px;
-}
-
+/*Input and button*/
 #field {
   font-size: 30px;
 }
@@ -46,7 +57,8 @@ h1 {
   margin-bottom: 15px;
 }
 
-#RightLetters, #WrongLetters {
+/*right and wrong letters*/
+#RightLetters, #WrongLetters, #livesCount {
   margin-top: 15px;
   font-size: 40px;
 }
@@ -55,6 +67,13 @@ h2 {
   font-size: 40px;
   display: inline-block;
   margin: 0;
+}
+
+/*New game button*/
+#newGame {
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 @media only screen and (max-width: 576px) {
