@@ -16,7 +16,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: url("../img/bg-img-universe.jpg");
+  background-image: url("../img/bg-img-universe.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: relative top right;
